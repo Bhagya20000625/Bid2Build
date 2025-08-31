@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "additionalDirectories": [
+      "C:\\Users\\Bhagya Umayanga\\OneDrive\\Documents\\Final Project\\Backend"
+    ],
+    "allow": [
+      "Bash(npm run dev:*)"
+    ]
+  }
+}
