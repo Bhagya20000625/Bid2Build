@@ -4,7 +4,7 @@ import { DollarSign, Calendar, Clock, CheckCircle, AlertTriangle, TrendingUp } f
 const Payments = () => {
   const paymentSummary = {
     totalEarnings: 125000,
-    pendingPayments: 35000,
+    pendingPayments: 258000,
     thisMonth: 18500,
     nextPayment: 12000
   };
