@@ -4,7 +4,6 @@ import { ArrowLeft, Compass, FileText } from 'lucide-react';
 export default function ArchitectForm({ onBack, onSubmit }) {
   const [formData, setFormData] = useState({
     specialization: '',
-    yearsExperience: '',
     portfolioUrl: '',
     designSoftware: '',
     licenseNumber: '',
@@ -82,23 +81,6 @@ export default function ArchitectForm({ onBack, onSubmit }) {
           </select>
         </div>
 
-        {/* Experience */}
-        <div>
-          <label htmlFor="yearsExperience" className="block text-sm font-medium text-gray-600 mb-2">
-            Experience (Years)
-          </label>
-          <input
-            type="number"
-            id="yearsExperience"
-            name="yearsExperience"
-            value={formData.yearsExperience}
-            onChange={handleInputChange}
-            placeholder="Enter years of experience"
-            min="0"
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-            required
-          />
-        </div>
 
         {/* Portfolio Link */}
         <div>

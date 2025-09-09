@@ -209,9 +209,82 @@ function App() {
     }
   };
 
-  const handleRoleSpecificSubmit = (roleData) => {
-    console.log('Complete registration data:', { ...formData, roleSpecificData: roleData });
-    setCurrentStep('success');
+  const handleRoleSpecificSubmit = async (roleData) => {
+    try {
+      // Prepare the complete registration data
+      const registrationData = {
+        // Basic user info
+        email: formData.email,
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        phone: formData.phone,
+        password: formData.password,
+        confirmPassword: formData.confirmPassword,
+        userRole: formData.userRole,
+        // Role-specific data
+        ...roleData
+      };
+
+      // Create FormData for file uploads
+      const formDataToSend = new FormData();
+      
+      // Add basic fields
+      Object.keys(registrationData).forEach(key => {
+        if (key !== 'files' && registrationData[key] !== null && registrationData[key] !== undefined) {
+          formDataToSend.append(key, registrationData[key]);
+        }
+      });
+
+      // Add files if present
+      if (roleData.document) {
+        formDataToSend.append('document', roleData.document);
+      }
+      if (roleData.businessCertificate) {
+        formDataToSend.append('businessCertificate', roleData.businessCertificate);
+      }
+      if (roleData.relevantLicenses) {
+        formDataToSend.append('relevantLicenses', roleData.relevantLicenses);
+      }
+      if (roleData.registrationCertificate) {
+        formDataToSend.append('registrationCertificate', roleData.registrationCertificate);
+      }
+      if (roleData.catalogFile) {
+        formDataToSend.append('catalogFile', roleData.catalogFile);
+      }
+      if (roleData.professionalLicense) {
+        formDataToSend.append('professionalLicense', roleData.professionalLicense);
+      }
+
+      // Send to backend
+      console.log('Sending request to backend...');
+      console.log('FormData contents:', Object.fromEntries(formDataToSend));
+      
+      const response = await fetch('http://localhost:5000/api/auth/register', {
+        method: 'POST',
+        body: formDataToSend
+      });
+      
+      console.log('Response status:', response.status);
+      console.log('Response ok:', response.ok);
+
+      const result = await response.json();
+
+      if (response.ok && result.success) {
+        console.log('Registration successful:', result);
+        setCurrentStep('success');
+      } else {
+        console.error('Registration failed:', result);
+        alert(`Registration failed: ${result.message || 'Unknown error'}`);
+        if (result.errors) {
+          console.error('Validation errors:', result.errors);
+          alert('Validation errors: ' + result.errors.join(', '));
+        }
+      }
+
+    } catch (error) {
+      console.error('Network error:', error);
+      alert('Network error occurred. Please check if the backend server is running.');
+    }
   };
 
   const handleBack = () => {

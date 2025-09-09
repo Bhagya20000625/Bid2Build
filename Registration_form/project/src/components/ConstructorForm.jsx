@@ -5,7 +5,6 @@ export default function ContractorForm({ onBack, onSubmit }) {
   const [formData, setFormData] = useState({
     companyName: '',
     specialization: '',
-    yearsExperience: '',
     licenseNumber: '',
     portfolioUrl: '',
     businessCertificate: null,
@@ -98,23 +97,6 @@ export default function ContractorForm({ onBack, onSubmit }) {
           </select>
         </div>
 
-        {/* Experience */}
-        <div>
-          <label htmlFor="yearsExperience" className="block text-sm font-medium text-gray-600 mb-2">
-            Experience (Years)
-          </label>
-          <input
-            type="number"
-            id="yearsExperience"
-            name="yearsExperience"
-            value={formData.yearsExperience}
-            onChange={handleInputChange}
-            placeholder="Enter years of experience"
-            min="0"
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"
-            required
-          />
-        </div>
 
         {/* License/Registration Number */}
         <div>

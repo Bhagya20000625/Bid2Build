@@ -4,7 +4,6 @@ import { ArrowLeft, User, MapPin, FileText } from 'lucide-react';
 export default function ClientForm({ onBack, onSubmit }) {
   const [formData, setFormData] = useState({
     location: '',
-    preferredProjectType: '',
     document: null
   });
 
@@ -68,25 +67,7 @@ export default function ClientForm({ onBack, onSubmit }) {
           />
         </div>
 
-        {/* Preferred Project Type */}
-        <div>
-          <label htmlFor="preferredProjectType" className="block text-sm font-medium text-gray-600 mb-2">
-            Preferred Project Type
-          </label>
-          <select
-            id="preferredProjectType"
-            name="preferredProjectType"
-            value={formData.preferredProjectType}
-            onChange={handleInputChange}
-            className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200"
-          >
-            <option value="">Select type</option>
-            <option value="residential">Residential</option>
-            <option value="commercial">Commercial</option>
-            <option value="renovation">Renovation</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
+        {/* Preferred Project Type field removed */}
 
         {/* Document Upload */}
         <div>

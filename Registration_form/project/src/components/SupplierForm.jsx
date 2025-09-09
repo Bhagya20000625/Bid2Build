@@ -4,25 +4,12 @@ import { ArrowLeft, Package } from 'lucide-react';
 export default function SupplierForm({ onBack, onSubmit }) {
   const [formData, setFormData] = useState({
     businessName: '',
-    materialsSupplied: [],
     businessRegNumber: '',
     serviceArea: '',
     registrationCertificate: null,
     catalogFile: null
   });
 
-  const materialOptions = [
-    'Cement',
-    'Steel',
-    'Wood',
-    'Electrical',
-    'Plumbing',
-    'Roofing',
-    'Flooring',
-    'Glass',
-    'Paint',
-    'Other'
-  ];
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -32,14 +19,6 @@ export default function SupplierForm({ onBack, onSubmit }) {
     }));
   };
 
-  const handleMaterialChange = (material) => {
-    setFormData(prev => ({
-      ...prev,
-      materialsSupplied: prev.materialsSupplied.includes(material)
-        ? prev.materialsSupplied.filter(m => m !== material)
-        : [...prev.materialsSupplied, material]
-    }));
-  };
 
   const handleFileChange = (e) => {
     const { name, files } = e.target;
@@ -96,27 +75,6 @@ export default function SupplierForm({ onBack, onSubmit }) {
           />
         </div>
 
-        {/* Materials Supplied */}
-        <div>
-          <label className="block text-sm font-medium text-gray-600 mb-4">
-            Type of Materials Supplied
-          </label>
-          <div className="grid grid-cols-2 gap-3">
-            {materialOptions.map((material) => (
-              <label key={material} className="flex items-center cursor-pointer group">
-                <input
-                  type="checkbox"
-                  checked={formData.materialsSupplied.includes(material)}
-                  onChange={() => handleMaterialChange(material)}
-                  className="w-4 h-4 text-purple-600 border-gray-300 rounded focus:ring-purple-500"
-                />
-                <span className="ml-3 text-sm text-gray-700 group-hover:text-purple-600 transition-colors duration-200">
-                  {material}
-                </span>
-              </label>
-            ))}
-          </div>
-        </div>
 
         {/* Business Registration Number */}
         <div>
