@@ -18,7 +18,7 @@ function App() {
           <Route path="/customer-dashboard" element={<CustomerDashboard />} />
           <Route path="/constructor-dashboard" element={<ConstructorDashboard />} />
           <Route path="/supplier-dashboard" element={<SupplierDashboard />} />
-          <Route path="/architect-dashboard" element={<ArchitectDashboard />} />
+          <Route path="/architect-dashboard/*" element={<ArchitectDashboard />} />
         </Routes>
       </div>
     </Router>
