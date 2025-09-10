@@ -1,39 +1,26 @@
-import React from 'react';
-import { HardHat, Wrench, ArrowLeft } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import Sidebar from '../constructor/Sidebar';
+import BrowseProjects from '../../pages/constructor/BrowseProjects';
+import UpdateProgress from '../../pages/constructor/UpdateProgress';
+import Payments from '../../pages/constructor/Payments';
+import Messages from '../../pages/constructor/Messages';
 
 const ConstructorDashboard = () => {
-  const navigate = useNavigate();
+  const [notifications] = useState(3);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="bg-white shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center">
-              <HardHat className="h-8 w-8 text-orange-600 mr-3" />
-              <h1 className="text-2xl font-bold text-gray-900">Constructor Dashboard</h1>
-            </div>
-            <button
-              onClick={() => navigate('/login')}
-              className="flex items-center text-gray-600 hover:text-gray-900 transition-colors"
-            >
-              <ArrowLeft className="h-4 w-4 mr-1" />
-              Back to Login
-            </button>
-          </div>
-        </div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="bg-white rounded-lg shadow p-6">
-          <div className="flex items-center mb-4">
-            <Wrench className="h-6 w-6 text-orange-600 mr-2" />
-            <h2 className="text-xl font-semibold text-gray-900">Welcome, Constructor!</h2>
-          </div>
-          <p className="text-gray-600">This is your constructor dashboard placeholder. Your actual dashboard components will go here.</p>
-        </div>
-      </div>
+    <div className="flex h-screen bg-gray-50">
+      <Sidebar notifications={notifications} />
+      <main className="flex-1 overflow-auto">
+        <Routes>
+          <Route path="/" element={<div className="p-8"><BrowseProjects /></div>} />
+          <Route path="/browse-projects" element={<div className="p-8"><BrowseProjects /></div>} />
+          <Route path="/update-progress" element={<div className="p-8"><UpdateProgress /></div>} />
+          <Route path="/payments" element={<div className="p-8"><Payments /></div>} />
+          <Route path="/messages" element={<div className="p-8"><Messages /></div>} />
+        </Routes>
+      </main>
     </div>
   );
 };
